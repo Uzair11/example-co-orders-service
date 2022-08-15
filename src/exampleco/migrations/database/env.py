@@ -1,4 +1,11 @@
+import os
+import sys
 from logging.config import fileConfig
+
+#### Changes for PR 1 Start
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+sys.path.append(BASE_DIR)
+#### Changed for PR 1 End
 
 from sqlalchemy import engine_from_config
 from sqlalchemy import pool
@@ -6,6 +13,7 @@ from sqlalchemy import pool
 from alembic import context
 
 from exampleco.models.database.services import Service
+from exampleco.models.database.orders import Order, OrderItems
 from exampleco.models.database import Base
 
 # this is the Alembic Config object, which provides
@@ -67,9 +75,7 @@ def run_migrations_online():
     )
 
     with connectable.connect() as connection:
-        context.configure(
-            connection=connection, target_metadata=target_metadata
-        )
+        context.configure(connection=connection, target_metadata=target_metadata)
 
         with context.begin_transaction():
             context.run_migrations()
