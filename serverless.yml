@@ -15,3 +15,15 @@ functions:
       - httpApi:
           path: /orders
           method: get
+  get_order_by_id:
+    handler: handler.get_order_by_id
+    events:
+      - httpApi:
+          path: /orders/{id}
+          method: get
+  delete_order_by_id:
+    handler: handler.delete_order_by_id
+    events:
+      - httpApi:
+          path: /orders/{id}
+          method: delete
