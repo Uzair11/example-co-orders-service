@@ -15,3 +15,15 @@ functions:
       - httpApi:
           path: /orders
           method: get
+  get_service_by_id:
+    handler: handler.get_service_by_id
+    events:
+      - httpApi:
+          path: /services/{id}
+          method: get
+  get_all_services:
+    handler: handler.get_all_services
+    events:
+      - httpApi:
+          path: /services
+          method: get
